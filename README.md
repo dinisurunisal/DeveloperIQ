@@ -48,3 +48,9 @@ This service is responsible for authenticating the GitHub, retrieving developer 
 ![alt text](https://github.com/dinisurunisal/DeveloperIQ_Solution/blob/main/images/deployment_architecture_dig.png?raw=true)
 
 The deployment architecture for this application is designed for efficiency and simplicity. Flask API is used with python in implementing the core functionality, and upon pushing the code to GitHub repo, CI/CD pipeline triggers with the use of GitHub actions. Later the Docker image is safely stored in Amazon ECR and Amazon EKS is responsible in orchestrating containers after fetching the Docker image from ECR. The continuous deployment (CD) phase ensures a seamless rollout of new versions in the production environment.
+
+#### Docker File:
+
+Apart from the above-mentioned services, it is required to build a docker image to encapsulate the services along with its dependencies and runtime environment. For this purpose, a docker file per service is needed as all the services will be running independently. This file uses an official python runtime and the dependencies required are installed through the requirements.txt file. 
+
+
