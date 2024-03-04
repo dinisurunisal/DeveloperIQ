@@ -20,4 +20,5 @@ In order to create an application that can calculate developer productivity, con
 
 ### NOTE: This repository contains all the services together for better understanding but to be able to run the CI/CD pipelines and work as microservices, the 3 folders in this repository should be inserted to 3 repositories seperately as shown below.
 
-![alt text](https://github.com/dinisurunisal/DeveloperIQ_Solution/edit/main/images/repository_structure.jpg?raw=true)
+![alt text](https://github.com/dinisurunisal/DeveloperIQ_Solution/blob/main/images/repository_structure.png?raw=true)
+
