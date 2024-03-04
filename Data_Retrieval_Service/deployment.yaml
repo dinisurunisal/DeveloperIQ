@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-retrieval-deployment
+  namespace: data-retrieval
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  selector:
+    matchLabels:
+      service: data-retrieval-service
+  template:
+    metadata:
+      labels:
+        service: data-retrieval-service
+    spec:
+      containers:
+      - name: data-retrieval
+        image: 665616097220.dkr.ecr.us-east-2.amazonaws.com/developeriq:latest
+        env:
+        - name: aws-access-key-id
+          value: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        - name: aws-secret-access-key
+          value: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        - name: aws-region
+          value: us-east-2    
+        ports:
+        - containerPort: 8080

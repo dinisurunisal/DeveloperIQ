@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: github-connection-deployment
+  namespace: github-connection
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  selector:
+    matchLabels:
+      service: github-connection-service
+  template:
+    metadata:
+      labels:
+        service: github-connection-service
+    spec:
+      containers:
+      - name: github-connection
+        image: 665616097220.dkr.ecr.us-east-2.amazonaws.com/developeriq:latest
+        env:
+        - name: aws-access-key-id
+          value: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        - name: aws-secret-access-key
+          value: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        - name: aws-region
+          value: us-east-2    
+        ports:
+        - containerPort: 8000
+        resources:
+          requests:
+            cpu: "125m"
+            memory: "125Mi"
+          limits:
+            cpu: "125m"
+            memory: "125Mi"

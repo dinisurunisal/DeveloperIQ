@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: github-connection-service
+  namespace: github-connection
+  labels:
+    service: github-connection-service
+spec:
+  type: LoadBalancer
+  selector:
+    service: github-connection-service
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000

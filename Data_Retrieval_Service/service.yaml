@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: data-retrieval-service
+  namespace: data-retrieval
+  labels:
+    service: data-retrieval-service
+spec:
+  type: LoadBalancer
+  selector:
+    service: data-retrieval-service
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
